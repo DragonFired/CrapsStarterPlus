@@ -20,11 +20,7 @@ class Craps(QMainWindow):
         self.die1 = Die()
         self.die2 = Die()
         self.firstRoll = True
-        self.previousRoll = 0
-        self.currentBet = 0
         self.numberOfWins = 0
-        self.numberOfLosses = 0
-        self.currentBank = 10000
 
         self.rollButton.clicked.connect(self.rollButtonClickedHandler)
 
@@ -42,34 +38,6 @@ class Craps(QMainWindow):
     # Player asked for another roll of the dice.
     def rollButtonClickedHandler(self):
         print("Roll button clicked")
-        rollValue = self.die1.roll() + self.die2.roll()
-        if self.firstRoll:
-            print("You rolled a {0}".format(rollValue))
-            if rollValue in (2, 3, 12):
-                print("You lost.")
-                self.numberOfLosses += 1
-                self.currentBank -= self.currentBet
-            elif rollValue in (7, 11):
-                print("You won!")
-                self.numberOfWins += 1
-                self.currentBank += self.currentBet
-            else:
-                self.previousRoll = rollValue
-                self.firstRoll = False
-        else:
-            print("You rolled a {0} and you needed a {1}".format(rollValue, self.previousRoll))
-            if rollValue == self.previousRoll:
-                print("You won!")
-                self.numberOfWins += 1
-                self.currentBank += self.currentBet
-            else:
-                print("You lost!")
-                self.numberOfLosses += 1
-                self.currentBank -= self.currentBet
-            self.firstRoll = True
-        if self.firstRoll:
-            # currentBet = int(input("how much would you like to bet? "))
-            currentBet = 50
         self.updateUI()
 
 
