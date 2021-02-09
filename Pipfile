@@ -7,7 +7,6 @@ verify_ssl = true
 
 [packages]
 pyqt5 = "*"
-pyqt5-stubs = "==5.14.2.2"
 
 [requires]
 python_version = "3.9"
